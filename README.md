@@ -2,7 +2,7 @@
 
 A one-page Power BI dashboard (Arabic interface) that looks at how **overtime** relates to **employee attrition**, broken down by job satisfaction, work-life balance and job level.
 
-📁 **Open:** `dash board.pbip` in Power BI Desktop. This is a Power BI Project (PBIP), so the model (TMDL) and report (PBIR) are stored as readable text files.
+📁 **Open:** `HR_Attrition_Overtime.pbip` in Power BI Desktop. This is a Power BI Project (PBIP), so the model (TMDL) and report (PBIR) are stored as readable text files.
 
 ---
 
