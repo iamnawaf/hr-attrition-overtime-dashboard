@@ -1,0 +1,74 @@
+table JobLevel_Attrition
+	lineageTag: 57226eab-ae6b-4632-934a-608b4af92390
+
+	measure 'إجمالي حالات الاستقالة' = SUM(Overtime_Attrition[AttritionCount])
+		formatString: #,0
+		lineageTag: 20d3481b-1123-435a-a0ee-f6f673cb7ebe
+
+	measure 'معدل الاستقالة' =
+			
+			DIVIDE([إجمالي حالات الاستقالة], SUM(Overtime_Attrition[إجمالي عدد الموظفين]))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 30993158-e4e0-49af-b1df-4c3714a0e771
+
+	measure 'أثر العمل الإضافي (مضاعف)' =
+			
+			DIVIDE(
+			    CALCULATE(SELECTEDVALUE(Overtime_Attrition[AttritionRate]), Overtime_Attrition[Overtime]="Yes"),
+			    CALCULATE(SELECTEDVALUE(Overtime_Attrition[AttritionRate]), Overtime_Attrition[Overtime]="No")
+			)
+		formatString: 0.00
+		lineageTag: 7e7dd556-9854-4847-b959-d8fa7fb0d1a3
+
+	column JobLevel
+		dataType: int64
+		formatString: 0
+		lineageTag: 01e6a345-6387-4c3f-9b37-c9611f46af2d
+		summarizeBy: none
+		sourceColumn: JobLevel
+
+		annotation SummarizationSetBy = Automatic
+
+	column AttritionCount
+		dataType: int64
+		lineageTag: 14e544cb-7003-4ef2-a3c8-39780107bf66
+		summarizeBy: sum
+		sourceColumn: AttritionCount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AvgMonthlyIncome
+		dataType: double
+		lineageTag: 7dcb1a71-89a8-4c1a-b504-17bccda45786
+		summarizeBy: sum
+		sourceColumn: AvgMonthlyIncome
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Overtime
+		dataType: string
+		lineageTag: dc76eff0-9c1e-4592-86ac-1737d6afc046
+		summarizeBy: none
+		sourceColumn: Overtime
+
+		annotation SummarizationSetBy = Automatic
+
+	partition JobLevel_Attrition = m
+		mode: import
+		source =
+				let
+				  Source = Excel.Workbook(File.Contents("C:\Users\itqan\Downloads\HR_Attrition_PowerBI_Data.xlsx"), null, true),
+				  #"Navigation 1" = Source{[Item = "JobLevel_Attrition", Kind = "Sheet"]}[Data],
+				  #"Promoted headers" = Table.PromoteHeaders(#"Navigation 1", [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"Overtime", type text}, {"JobLevel", Int64.Type}, {"AttritionCount", Int64.Type}, {"AvgMonthlyIncome", type number}})
+				in
+				    #"Changed column type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

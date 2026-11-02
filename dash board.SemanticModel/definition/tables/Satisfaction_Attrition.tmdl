@@ -1,0 +1,54 @@
+table Satisfaction_Attrition
+	lineageTag: 25a863d3-d458-4bc3-af2f-74335293d868
+
+	column Overtime
+		dataType: string
+		lineageTag: 26c86430-cef7-4637-bd02-a58f0fc5fcfa
+		summarizeBy: none
+		sourceColumn: Overtime
+
+		annotation SummarizationSetBy = Automatic
+
+	column JobSatisfaction
+		dataType: int64
+		formatString: 0
+		lineageTag: 44e39c5d-fe85-46db-80c7-ce4e0fa9527d
+		summarizeBy: none
+		sourceColumn: JobSatisfaction
+
+		annotation SummarizationSetBy = Automatic
+
+	column AttritionRate
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 2e8abc57-6258-4043-aba9-0cc317b9d34a
+		summarizeBy: average
+		sourceColumn: AttritionRate
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'مستوى الرضا' = SWITCH ( Satisfaction_Attrition[JobSatisfaction], 1, "منخفض", 2, "متوسط", 3, "عالي", 4, "عالي جدًا" )
+		dataType: string
+		lineageTag: c1441486-3286-4fa5-a404-610ebfa83eb2
+		summarizeBy: none
+		sortByColumn: JobSatisfaction
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Satisfaction_Attrition = m
+		mode: import
+		source =
+				let
+				  Source = Excel.Workbook(File.Contents("C:\Users\itqan\Downloads\HR_Attrition_PowerBI_Data.xlsx"), null, true),
+				  #"Navigation 1" = Source{[Item = "Satisfaction_Attrition", Kind = "Sheet"]}[Data],
+				  #"Promoted headers" = Table.PromoteHeaders(#"Navigation 1", [PromoteAllScalars = true]),
+				  #"Changed column type" = Table.TransformColumnTypes(#"Promoted headers", {{"Overtime", type text}, {"JobSatisfaction", Int64.Type}, {"AttritionRate", type number}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed column type", each ([Overtime] <> "Total")),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Filtered Rows",{{"AttritionRate", Percentage.Type}})
+				in
+				  #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

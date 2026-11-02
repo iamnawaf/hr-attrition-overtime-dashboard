@@ -1,0 +1,74 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 50,
+            "y": 193.91170681795347
+          },
+          "nodeIndex": "JobLevel_Attrition",
+          "nodeLineageTag": "57226eab-ae6b-4632-934a-608b4af92390",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 337.05233597080519,
+            "y": 153.7446317298195
+          },
+          "nodeIndex": "Overtime_Attrition",
+          "nodeLineageTag": "1f69d3ff-4d3f-4ca4-93a5-3d3bf4c08965",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 317.00095209753675,
+            "y": -50
+          },
+          "nodeIndex": "Satisfaction_Attrition",
+          "nodeLineageTag": "25a863d3-d458-4bc3-af2f-74335293d868",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 337.21565515508382,
+            "y": 381.31963291042433
+          },
+          "nodeIndex": "WorkLife_Attrition",
+          "nodeLineageTag": "4f644f40-24a1-4509-b174-19d84f4008d0",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

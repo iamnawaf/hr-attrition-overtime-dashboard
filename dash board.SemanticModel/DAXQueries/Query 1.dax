@@ -1,0 +1,10 @@
+Total Attritions = SUM(Overtime_Attrition[AttritionCount])
+
+Overall Attrition Rate =
+DIVIDE([Total Attritions], SUM(Overtime_Attrition[EstimatedEmployees]))
+
+Overtime Multiplier =
+DIVIDE(
+    CALCULATE(SELECTEDVALUE(Overtime_Attrition[AttritionRate]), Overtime_Attrition[Overtime]="Yes"),
+    CALCULATE(SELECTEDVALUE(Overtime_Attrition[AttritionRate]), Overtime_Attrition[Overtime]="No")
+)

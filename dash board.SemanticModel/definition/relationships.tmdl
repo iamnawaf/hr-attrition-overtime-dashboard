@@ -1,0 +1,12 @@
+relationship AutoDetected_8011a190-32b2-49c7-976b-a9b6b651e4fb
+	fromColumn: Satisfaction_Attrition.Overtime
+	toColumn: Overtime_Attrition.Overtime
+
+relationship AutoDetected_c650b274-2da3-43fb-bca0-acb53647483f
+	fromColumn: WorkLife_Attrition.Overtime
+	toColumn: Overtime_Attrition.Overtime
+
+relationship AutoDetected_99de26c7-9f5c-41eb-873d-3b8e4330f125
+	fromColumn: JobLevel_Attrition.Overtime
+	toColumn: Overtime_Attrition.Overtime
+

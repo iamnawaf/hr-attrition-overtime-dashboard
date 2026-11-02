@@ -1,0 +1,22 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["Overtime_Attrition","Satisfaction_Attrition","WorkLife_Attrition","JobLevel_Attrition"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Overtime_Attrition
+ref table Satisfaction_Attrition
+ref table WorkLife_Attrition
+ref table JobLevel_Attrition
+
+ref cultureInfo en-US
+
