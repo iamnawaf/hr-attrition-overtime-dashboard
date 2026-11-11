@@ -6,6 +6,12 @@ A one-page Power BI dashboard (Arabic interface) that looks at how **overtime** 
 
 ---
 
+## Preview
+
+![HR attrition and overtime dashboard](screenshots/dashboard.png)
+
+---
+
 ## Headline numbers
 
 | Metric | Value |
